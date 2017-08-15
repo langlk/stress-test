@@ -19,8 +19,11 @@ function getStressLevel(badSigns, goodSigns) {
 $(document).ready(function() {
   $("#stress-test").submit(function(event) {
     event.preventDefault();
+    $("#stress-test").hide();
+
     var badSigns = [];
     var goodSigns = [];
+    var otherRelief = [];
     $("input:checkbox[name=symptoms]:checked").each(function() {
       var symptomInput = $(this).val();
       badSigns.push(symptomInput);
@@ -33,9 +36,21 @@ $(document).ready(function() {
       var reliefInput = $(this).val();
       goodSigns.push(reliefInput);
     });
+    $("input:checkbox[name=relief]:not(:checked)").each(function() {
+      var uncheckedRelief = $(this).val();
+      otherRelief.push(uncheckedRelief);
+    });
 
+    var reliefActivites = {"meditation":"Meditating", "pet":"Spend time with a pet", "exercise":"Exercising", "sleep":"Getting more sleep", "games":"Playing games", "outside":"Spending time outside"}
     var stressLevelStrings = ["Your stress levels are low.", "You're handling your stress well.", "You may be somewhat stressed.", "You may be stressed."];
     var stressLevel = getStressLevel(badSigns, goodSigns);
-    $(".results").append("<p>" + stressLevelStrings[stressLevel] + "</p>");
+    $(".results").prepend("<p>" + stressLevelStrings[stressLevel] + "</p>");
+    if (stressLevel > 1) {
+      $(".other-relief").show();
+      otherRelief.forEach(function(activity) {
+        $("ul.other-relief").prepend("<li>" + reliefActivites[activity] + "</li>");
+      });
+    }
+    $(".results").show();
   });
 });
