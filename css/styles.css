@@ -1,3 +1,52 @@
+body {
+  background-color: #a0c55f;
+  color: #0b2e59;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+}
+
+input {
+  margin-right: 10px;
+}
+
 .results {
   display: none;
+}
+
+.jumbotron {
+  background-color: #2a044a;
+  color: #7ab317;
+  padding: 40px 0px 15px 0px;
+  font-family: 'Amatic SC', cursive;
+}
+
+.btn {
+  background-color: #0d6759;
+  color: #a0c55f;
+}
+
+.container {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.jumbotron .container {
+  max-width: 85%;
+}
+
+.jumbotron h1 {
+  font-size: 78px;
+}
+
+.jumbotron p {
+  font-size: 40px;
+}
+
+.results {
+  font-size: 30px;
+}
+
+.other-relief {
+  font-size: 20px;
 }

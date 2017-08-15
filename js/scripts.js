@@ -39,8 +39,10 @@ $(document).ready(function() {
 
     var reliefActivites = {"meditation":"Meditating", "pet":"Spend time with a pet", "exercise":"Exercising", "sleep":"Getting more sleep", "games":"Playing games", "outside":"Spending time outside"}
     var stressLevelStrings = ["Your stress levels are low.", "You're handling your stress well.", "You may be somewhat stressed.", "You may be stressed."];
+
     var stressLevel = getStressLevel(badSigns.length, goodSigns.length);
     $(".results").prepend("<p>" + stressLevelStrings[stressLevel] + "</p>");
+    $(".other-relief").hide();
     if (stressLevel > 1) {
       $(".other-relief").show();
       otherRelief.forEach(function(activity) {
