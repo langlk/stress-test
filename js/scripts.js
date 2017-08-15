@@ -1,12 +1,12 @@
 function getStressLevel(badSigns, goodSigns) {
-  if (badSigns.length >= 5) {
-    if (goodSigns.length >= badSigns.length) {
+  if (badSigns >= 5) {
+    if (goodSigns >= badSigns) {
       return 1;
     } else {
       return 3;
     }
-  } else if (badSigns.length >= 3) {
-    if (goodSigns.length >= badSigns.length) {
+  } else if (badSigns >= 3) {
+    if (goodSigns >= badSigns) {
       return 1;
     } else {
       return 2;
@@ -28,10 +28,6 @@ $(document).ready(function() {
       var symptomInput = $(this).val();
       badSigns.push(symptomInput);
     });
-    $("input:checkbox[name=health]:checked").each(function() {
-      var healthInput = $(this).val();
-      badSigns.push(healthInput);
-    });
     $("input:checkbox[name=relief]:checked").each(function() {
       var reliefInput = $(this).val();
       goodSigns.push(reliefInput);
@@ -43,7 +39,7 @@ $(document).ready(function() {
 
     var reliefActivites = {"meditation":"Meditating", "pet":"Spend time with a pet", "exercise":"Exercising", "sleep":"Getting more sleep", "games":"Playing games", "outside":"Spending time outside"}
     var stressLevelStrings = ["Your stress levels are low.", "You're handling your stress well.", "You may be somewhat stressed.", "You may be stressed."];
-    var stressLevel = getStressLevel(badSigns, goodSigns);
+    var stressLevel = getStressLevel(badSigns.length, goodSigns.length);
     $(".results").prepend("<p>" + stressLevelStrings[stressLevel] + "</p>");
     if (stressLevel > 1) {
       $(".other-relief").show();
